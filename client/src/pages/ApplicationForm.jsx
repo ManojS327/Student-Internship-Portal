@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { apiUrl, fetchInternships } from '../api';
 import { ErrorBanner } from '../components/Feedback';
-import { formatDate, formatStipend } from '../utils/format';
+import { formatDate, formatStipend, internshipImage } from '../utils/format';
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 const ROLL_NUMBER_PATTERN = /^[A-Z0-9][A-Z0-9/_-]{2,19}$/i;
@@ -251,12 +251,22 @@ function ApplicationForm() {
 
             {selectedInternship && (
                 <div className="selected-strip">
-                    <div>
-                        <span className="selected-label">Applying for</span>
-                        <strong>{selectedInternship.title}</strong>
-                        <span className="muted">
-                            {selectedInternship.company} · {selectedInternship.location}
-                        </span>
+                    <div className="selected-info">
+                        <img
+                            className="selected-thumb"
+                            src={internshipImage(selectedInternship)}
+                            alt=""
+                            width="120"
+                            height="120"
+                            loading="lazy"
+                        />
+                        <div>
+                            <span className="selected-label">Applying for</span>
+                            <strong>{selectedInternship.title}</strong>
+                            <span className="muted">
+                                {selectedInternship.company} · {selectedInternship.location}
+                            </span>
+                        </div>
                     </div>
                     <div className="selected-meta">
                         <span>{formatStipend(selectedInternship.stipend)}</span>

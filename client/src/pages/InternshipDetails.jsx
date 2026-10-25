@@ -7,6 +7,7 @@ import {
     deadlineLabel,
     formatDate,
     formatStipend,
+    internshipImage,
     isClosed,
     modeClass,
 } from '../utils/format';
@@ -68,6 +69,16 @@ function InternshipDetails() {
                 <span aria-hidden="true">/</span>
                 <span>{internship.title}</span>
             </nav>
+
+            <div className="detail-cover">
+                <img
+                    src={internshipImage(internship)}
+                    alt=""
+                    width="1200"
+                    height="675"
+                    decoding="async"
+                />
+            </div>
 
             <header className="detail-hero">
                 <div className="detail-heading">

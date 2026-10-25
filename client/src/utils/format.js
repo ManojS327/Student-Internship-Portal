@@ -51,6 +51,12 @@ export const companyInitials = (company = '') =>
         .join('')
         .toUpperCase();
 
+export const internshipImage = (internship = {}) => {
+    if (internship.coverImage) return internship.coverImage;
+    const seed = internship.slug || internship._id || 'internship';
+    return `https://picsum.photos/seed/${encodeURIComponent(seed)}/1200/675`;
+};
+
 export const modeClass = (mode) =>
     ({
         Remote: 'mode-remote',

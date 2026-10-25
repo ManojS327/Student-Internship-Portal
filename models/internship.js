@@ -26,6 +26,11 @@ const internshipSchema = new Schema(
             required: [true, 'Location is required'],
             trim: true,
         },
+        coverImage: {
+            type: String,
+            trim: true,
+            default: '',
+        },
         mode: {
             type: String,
             enum: ['Remote', 'Hybrid', 'On-site'],
