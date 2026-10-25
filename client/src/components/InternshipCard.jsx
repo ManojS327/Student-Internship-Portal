@@ -1,3 +1,4 @@
+
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import {
@@ -14,16 +15,36 @@ function InternshipCard({ internship }) {
 
     return (
         <article className="internship-card">
-            <div className="card-media">
+            <div
+                className="card-media"
+                style={{
+                    position: 'relative',
+                    width: '100%',
+                    height: 'clamp(160px, 25vw, 220px)',
+                    overflow : 'hidden',
+                    margin: '10px'
+                }}
+            >
                 <img
                     src={internshipImage(internship)}
                     alt=""
                     loading="lazy"
                     decoding="async"
-                    width="1200"
-                    height="675"
+                    style={{
+                        display: 'block',
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover',
+                        objectPosition: 'center',
+                        borderRadius:'16px'
+                    }}
                 />
-                <span className={`badge card-media-badge ${modeClass(internship.mode)}`}>
+
+                <span
+                    className={`badge card-media-badge ${modeClass(
+                        internship.mode
+                    )}`}
+                >
                     {internship.mode}
                 </span>
             </div>
@@ -33,8 +54,12 @@ function InternshipCard({ internship }) {
                     <span className="company-avatar" aria-hidden="true">
                         {companyInitials(internship.company)}
                     </span>
+
                     <div className="card-heading">
-                        <p className="company-name">{internship.company}</p>
+                        <p className="company-name">
+                            {internship.company}
+                        </p>
+
                         <p className="company-location">
                             {internship.location} · {internship.mode}
                         </p>
@@ -42,10 +67,14 @@ function InternshipCard({ internship }) {
                 </div>
 
                 <h3 className="card-title">
-                    <Link to={`/internships/${internship._id}`}>{internship.title}</Link>
+                    <Link to={`/internships/${internship._id}`}>
+                        {internship.title}
+                    </Link>
                 </h3>
 
-                <p className="card-description">{internship.description}</p>
+                <p className="card-description">
+                    {internship.description}
+                </p>
 
                 <ul className="tag-row" aria-label="Skills">
                     {internship.skills.slice(0, 4).map((skill) => (
@@ -60,10 +89,12 @@ function InternshipCard({ internship }) {
                         <dt>Stipend</dt>
                         <dd>{formatStipend(internship.stipend)}</dd>
                     </div>
+
                     <div>
                         <dt>Duration</dt>
                         <dd>{internship.duration}</dd>
                     </div>
+
                     <div>
                         <dt>Openings</dt>
                         <dd>{internship.openings}</dd>
@@ -74,6 +105,7 @@ function InternshipCard({ internship }) {
                     <span className={closed ? 'deadline closed' : 'deadline'}>
                         {deadlineLabel(internship.deadline)}
                     </span>
+
                     <Link
                         to={`/internships/${internship._id}`}
                         className="btn btn-secondary btn-small"
